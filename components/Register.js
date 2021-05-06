@@ -1,10 +1,10 @@
-import { reset } from "./Utils.js";
-//import { google_provider } from '../index.js';
+import { reset, showPassword, hidePassword } from "./Utils.js";
+import { singUp, authGoogle, authFacebook } from "../Firebase/Services.js";
 
 export function Register() {
-    reset();
-    const register = document.createElement("div");
-    register.innerHTML = ` 
+  reset();
+  const register = document.createElement("div");
+  register.innerHTML = ` 
         <div class="container">
           <a href="#/"><img class="back" src=./assets/back.svg alt="arrow"></a>
           <h1 class="register-tittle"> Enjoy Gleam </h1>
@@ -14,18 +14,24 @@ export function Register() {
                 <div class="form_styles">
                   <label for="email">Email address</label>
                   <input type="email" required id="email"/>
+                  <div class="input__indicator"></div>
                 </div> 
                 <div class="form_styles">
                   <label for="text">Full name</label>
                   <input type="text" required id="name"/>
+                  <div class="input__indicator"></div>
                 </div> 
                 <div class="form_styles">
                   <label for="date">Date of birth</label>
                   <input type="date" required id="date"/>
+                  <div class="input__indicator"></div>
                 </div> 
                 <div class="form_styles">
                   <label for="password">Password</label>
                   <input type="password" required id="password"/>
+                  <img class="show" src=./assets/show.svg alt="eye">
+                  <img class="hide" src=./assets/hide.svg alt="eye">
+                  <div class="input__indicator"></div>
                 </div> 
                 <div class="button">
                   <button type="submit" id="register" class="button_general">Create Account</button>
@@ -38,89 +44,44 @@ export function Register() {
                 <button><img id="logoGoogle" src=./assets/logo-google.svg></button>
               </div>
               <span>Already have an Account?
-                  <a href="#">Sign Up</a>
+                  <a href="#/login">Sign Up</a>
               </span>
             </div>`;
 
-    return register;
+  return register;
 }
+const grid = document.querySelector(".grid");
+grid.classList.remove("padding");
 
 export function addUser() {
-    const auth = firebase.auth();
-    // const firestore = firebase.firestore(); --> TODO FIRESTORE
-    const btnContinue = document.querySelector("#register");
-    const formRegister = document.querySelector("#formRegister");
-    const btnFb = document.querySelector("#logoFb");
-    const btnGoogle = document.querySelector("#logoGoogle");
-    btnContinue.addEventListener("click", (e) => {
-        e.preventDefault();
+  const btnContinue = document.querySelector("#register");
+  const btnFb = document.querySelector("#logoFb");
+  const btnGoogle = document.querySelector("#logoGoogle");
+  btnContinue.addEventListener("click", (e) => {
+    e.preventDefault();
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
+    singUp(email, password);
+  });
 
-        const email = document.querySelector("#email").value;
-        const password = document.querySelector("#password").value;
-        auth
-            .createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                formRegister.reset();
-                console.log("estas registrado");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+  btnGoogle.addEventListener("click", (e) => {
+    e.preventDefault();
+    authGoogle();
+  });
 
-    });
+  btnFb.addEventListener("click", (e) => {
+    e.preventDefault();
+    authFacebook();
+  });
+  // toggle
+  const passwordField = document.querySelector("#password");
+  const show = document.querySelector(".show");
+  const hide = document.querySelector(".hide");
 
-    btnGoogle.addEventListener("click", (e) => {
-        e.preventDefault();
-        //formRegister.reset();
-        const google_provider = new firebase.auth.GoogleAuthProvider();
-        auth
-            .signInWithPopup(google_provider)
-            .then((result) => {
-              console.log('google register', result);
-                /*/** @type {firebase.auth.OAuthCredential} */
-                //let credential = result.credential;
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                //let token = credential.accessToken;
-                // The signed-in user info.
-                //let user = result.user;
-                // ...
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    });
-
-    btnFb.addEventListener("click", (e) => {
-      e.preventDefault();
-      //formRegister.reset();
-        const providerFb = new firebase.auth.FacebookAuthProvider();
-        firebase
-            .auth()
-            .signInWithPopup(providerFb)
-            .then((result) => {
-              console.log('Facebook register')
-                /*/** @type {firebase.auth.OAuthCredential} */
-                //let credential = result.credential;
-
-                // The signed-in user info.
-                //let user = result.user;
-
-                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-                //let accessToken = credential.accessToken;
-
-                // ...
-            })
-            .catch((error) => {
-                console.log(error);
-                // Handle Errors here.
-                //let errorCode = error.code;
-                //let errorMessage = error.message;
-                // The email of the user's account used.
-                //let email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                //let credential = error.credential;
-
-                // ...
-            });
-    });
+  show.addEventListener("click", () => {
+    showPassword(passwordField, show, hide);
+  });
+  hide.addEventListener("click", () => {
+    hidePassword(passwordField, hide, show);
+  });
 }
