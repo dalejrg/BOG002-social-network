@@ -16,3 +16,10 @@ export function hidePassword(input, hide, show) {
   hide.style.display = "none";
   show.style.display = "block";
 }
+
+export function homeListener(menuIcon) {
+  menuIcon.classList.toggle("open");
+}
+export function menuPrincipal(navegator) {
+  navegator.classList.toggle("is_active");
+}

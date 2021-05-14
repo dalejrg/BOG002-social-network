@@ -1,11 +1,11 @@
 import { reset, homeListener, menuPrincipal } from "./Utils.js";
-// import { signOut } from "../Firebase/Services.js";
+import { createPost } from "../Firebase/Storage.js";
 
-export function Home() {
+export function Post() {
   reset();
-  const template = document.createElement("div");
-  template.setAttribute("id", "home");
-  template.insertAdjacentHTML(
+  const templatePost = document.createElement("div");
+  templatePost.setAttribute("id", "home");
+  templatePost.insertAdjacentHTML(
     "afterbegin",
     `<header class="headerHome">
       <div>
@@ -27,7 +27,14 @@ export function Home() {
         </ul>
       </nav>
     </header>
-    <div id="container" class="posts"> 
+    <div id="container" class="posts">
+    <div class="posts"> 
+        <label id="labelPost"><button id="btnArrow"><img id="arrow" src = "./assets/post-arrow.svg"></button> Post </label>
+        <input type = "file" id = "file" hidden>
+        <label for="file" id = "labelImage"> <img id="upload" src = "./assets/logo-image.svg"> Upload Image </label>
+        <textarea  placeholder = "Tell us what you have in mind …" id = "addText"></textarea>
+        <button id = "addPost" class="button_general" > Add Post </button>
+    </div>
     </div>
     <footer class="navBar">
         <div>
@@ -39,27 +46,23 @@ export function Home() {
         <div>
           <a href="#/"><img class="logo-Profile" src=./assets/Profile.svg alt="arrow"></a>
         </div>
-    </footer>
-    `
+    </footer>`
   );
-  return template;
+  return templatePost;
 }
-export function menu() {
+
+export function menuHam() {
   const nav = document.querySelector("#hamburger_menu button");
   const menuppal = document.querySelector(".menuppal");
   nav.addEventListener("click", (e) => {
     homeListener(nav);
     menuPrincipal(menuppal);
   });
+  const addPost = document.querySelector("#addPost");
+  addPost.addEventListener("click", (e) => {
+    e.preventDefault();
+    const file = document.querySelector("#file").files[0];
+    const text = document.querySelector("#addText").value;
+    createPost(file, text);
+  });
 }
-/*<div class="btns-container-mobile">
-          <button id="signOut" class="button_general">LogOut</button>
-        </div>*/
-
-// export function userOut() {
-//   const logOut = document.querySelector("#signOut");
-//   logOut.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     signOut();
-//   });
-// }
