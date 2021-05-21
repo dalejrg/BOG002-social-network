@@ -42,7 +42,7 @@ body {
     display: flex;
     position: relative;
     justify-content: space-around;
-    height: 100vh;
+    height: 92vh;
     flex-direction: column;
     padding: 30px;
     overflow-y: scroll;
@@ -530,7 +530,8 @@ footer {
     display: flex;
     flex-direction: column;
     padding-top: 70px;
-    /* margin-top: 400px; */
+    top: 0;
+    height: 88vh;
 }
 
 .newPost {

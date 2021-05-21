@@ -30,9 +30,9 @@ export function Home() {
   template.insertAdjacentHTML(
     "afterbegin",
     `<header class="headerHome">
-      <div>
-        <img class="logoHome" src="./assets/LogoHome.svg" alt="Gleam logo">
-      </div>
+    <div>
+      <img class="logoHome" src="./assets/LogoHome.svg" alt="Gleam logo">
+    </div>
       <div id="hamburger_menu">
         <button>
           <span class="top_line"></span>
@@ -49,10 +49,9 @@ export function Home() {
         </ul>
       </nav>
     </header>
-    <div id="container" class="posts">
-      <div id="render"></div>
-    </div>
-
+<div id="container" class="posts">
+  <div id="render"></div>
+</div>
     </div>
     <footer class="navBar">
         <div>
