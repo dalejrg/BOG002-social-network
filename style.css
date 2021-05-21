@@ -11,6 +11,7 @@ body {
     font-family: 'Lato', sans-serif;
     color: rgb(84, 84, 84);
     height: 100vh;
+    overflow-y: hidden;
 }
 
 
@@ -37,13 +38,14 @@ body {
     ;
 }
 
-#template #container {
+ #container {
     display: flex;
     position: relative;
     justify-content: space-around;
-    height: 100vh;
+    height: 92vh;
     flex-direction: column;
     padding: 30px;
+    overflow-y: scroll;
 }
 
 #container .logo {
@@ -231,8 +233,9 @@ span:last-child {
     margin: 0 10px;
 }
 
-#btnArrow{
+#btnArrow {
     border: none;
+    background: none;
 }
 
 #labelPost {
@@ -269,22 +272,22 @@ label#labelImage {
     margin-top: 15px;
     border: 1px solid #6002B2;
     width: 100%;
-    height: 40%;
+    height: 20%;
     border-radius: 15px;
     padding: 10px;
     font-family: 'Lato', sans-serif;
     font-weight: 600;
 }
 
-#addText::placeholder{
+#addText::placeholder {
     color: #8E8E8E;
-
 }
 
 #addPost {
     border: none;
     border-radius: 50px;
-    background-color: #B1B1B1;    ;
+    background-color: #B1B1B1;
+    /*;*/
     color: white;
     height: 15%;
     width: 100%;
@@ -305,6 +308,7 @@ label#labelImage {
 
 .headerHome {
     position: absolute;
+    border-radius: 0 0 0 100px;
     height: 80px;
     width: 100%;
     display: flex;
@@ -466,42 +470,97 @@ footer {
         opacity: 1;
     }
 }
+
+
 /* menu nav */
-.menuppal{
-    background-color:#9423BC;
+
+.menuppal {
+    background-color: #9423BC;
     bottom: 0;
     height: 100%;
     left: 0;
     overflow-y: scroll;
     position: fixed;
+    border-radius: 100px 0;
     top: 0;
-    transform: translate3d(0px, -100%, 0px);
-    transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98) 0s;
+    transform: translate3d(100%, 80px, 0px);
+    transition: transform 0.35s ease-out;
     width: 100%;
     z-index: 2;
 }
-.menuppal.is_active{
-    transform: translate(120px, 80px)
+
+.menuppal.is_active {
+    transform: translate(20%, 80px)
 }
-.menuppal ul{
-    margin:0;
-    padding:0;
+
+.menuppal ul {
+    margin: 0;
+    padding: 0;
 }
-.menuppal ul li { 
+
+.menuppal ul li {
     list-style: none;
-    text-align:center;
-    font-size:1.5rem;
-    line-height:3em;
-    height:3em;
-    color:rgb(1, 11, 20);
-    text-transform:none;
-    font-weight:bold;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 3em;
+    height: 3em;
+    color: rgb(1, 11, 20);
+    text-transform: none;
+    font-weight: bold;
 }
-.menuppal ul li a{
-    text-decoration:none;
-    color:white;
+
+.menuppal ul li a {
+    text-decoration: none;
+    color: white;
 }
-.menuppal ul li a:hover{
-    text-decoration:none;
-    color:rgb(132, 228, 22);
+
+.menuppal ul li a:hover {
+    text-decoration: none;
+    color: rgb(132, 228, 22);
+}
+
+#upload.imgUpload {
+    width: 40%;
+}
+
+
+/* post card */
+
+#render {
+    display: flex;
+    flex-direction: column;
+    padding-top: 70px;
+    top: 0;
+    height: 88vh;
+}
+
+.newPost {
+    background: #F9F9F9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    width: 310;
+    margin: 10px;
+    position: relative;
+    align-items: center;
+    text-align: center;
+}
+
+.imgPost {
+    width: 100%;
+    padding: 5px;
+}
+
+.text {
+    padding: 8px;
+}
+
+.textPost {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    padding: 15px;
+}
+
+#home:nth-child(3) {
+    display: none;
+    background-color: red;
 }
