@@ -1,9 +1,9 @@
 import { Loading } from "./Loading.js";
 import { Landing, random } from "./Landing.js";
 import { Register, addUser } from "./Register.js";
-import { Home, menu, renderPosts } from "./Home.js";
+import { Home, menu, renderPosts, userOut } from "./Home.js";
 import { Login, logInUser } from "./Login.js";
-import { Post, menuHam, postFb } from "./Post.js";
+import { Post, menuHam, postFb, userOutPost } from "./Post.js";
 import { Password, recoverPassword } from "./Password.js";
 
 export function Router() {
@@ -29,13 +29,14 @@ export function Router() {
     case "#/home":
       root.appendChild(Home());
       renderPosts();
-      // userOut();
+      userOut();
       menu();
       break;
     case "#/post":
       root.appendChild(Post());
       menuHam();
       postFb();
+      userOutPost();
       break;
     default:
       break;
