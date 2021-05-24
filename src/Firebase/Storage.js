@@ -1,3 +1,5 @@
+import { renderPost } from "../components/Utils.js"
+
 const db = firebase.firestore();
 export function createPost(file, description) {
   uploadImage(file).then((url) => {
@@ -17,4 +19,15 @@ function uploadImage(file) {
     .catch((error) => {
       console.log(error.message);
     });
+}
+export function getPost() {
+  db.collection("usersPost").onSnapshot(query => {
+      let changePost = query.docChanges();
+      const timeline = [];
+      changePost.forEach(post => {
+          timeline.push(post.doc.data())
+          console.log({ id: post.doc.id, ...post.doc.data() })
+          renderPost(post.doc.data())
+      })
+  })
 }

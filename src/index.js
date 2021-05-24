@@ -33,7 +33,7 @@ window.addEventListener("hashchange", App);
 //     );
 //   }
 
-window.addEventListener("load", () => {
+/*window.addEventListener("load", () => {
   const db = firebase.firestore();
   db.collection("usersPost").onSnapshot((query) => {
     const template = document.querySelector("#template");
@@ -50,4 +50,4 @@ window.addEventListener("load", () => {
     template.dataset.timeline = JSON.stringify(timeline);
   });
   console.log("carga pagina");
-});
+});*/

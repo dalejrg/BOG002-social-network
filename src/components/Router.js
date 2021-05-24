@@ -5,6 +5,7 @@ import { Home, menu, renderPosts, userOut } from "./Home.js";
 import { Login, logInUser } from "./Login.js";
 import { Post, menuHam, postFb, userOutPost } from "./Post.js";
 import { Password, recoverPassword } from "./Password.js";
+import { getPost } from "../Firebase/Storage.js";
 
 export function Router() {
   const { hash } = location;
@@ -28,7 +29,7 @@ export function Router() {
       break;
     case "#/home":
       root.appendChild(Home());
-      renderPosts();
+      getPost();
       userOut();
       menu();
       break;
