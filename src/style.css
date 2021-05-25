@@ -38,7 +38,7 @@ body {
     ;
 }
 
- #container {
+#container {
     display: flex;
     position: relative;
     justify-content: space-around;
@@ -326,6 +326,17 @@ label#labelEditImage {
     padding: 10px;
 }
 
+
+/*color: white;
+height: 15%;
+width: 100%;
+margin-top: 20px;
+font-family: 'Lato',
+sans-serif;
+font-weight: 600;
+
+}*/
+
 .logoHome {
     height: 160px;
     width: 130px;
@@ -380,8 +391,9 @@ footer {
     color: red;
     text-align: center;
 }
-.recover{
-    color:darkgrey;
+
+.recover {
+    color: darkgrey;
     text-align: initial;
     font-weight: bold;
 }
@@ -581,25 +593,71 @@ footer {
     text-align: center;
 }
 
+.headerPost {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.user {
+    grid-column: 1 / 3;
+    margin-left: 15px;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.timePost {
+    font-size: 13px;
+    text-align: left;
+}
+
+.options {
+    margin-top: 5px;
+    margin-left: 30px;
+}
+
+#editPost {
+    background-color: transparent;
+    border-style: hidden;
+}
+
 .imgPost {
     width: 100%;
     padding: 5px;
 }
 
-.text {
-    padding: 8px;
-}
-
 .textPost {
     font-family: 'Lato', sans-serif;
-    font-weight: 600;
-    padding: 15px;
+    margin: 10px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.socialPost {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.like {
+    grid-column: 1 / 6;
+}
+
+.share {
+    grid-column: 2 / 6;
+    margin-top: 4px;
 }
 
 #home:nth-child(3) {
     display: none;
     background-color: red;
 }
+
 
 /* RECUPERAR CONTRASEÑA */
 
@@ -608,5 +666,4 @@ footer {
     background-size: cover;
     background-position: center;
     height: 100%;
-
 }
