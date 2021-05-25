@@ -380,6 +380,11 @@ footer {
     color: red;
     text-align: center;
 }
+.recover{
+    color:darkgrey;
+    text-align: initial;
+    font-weight: bold;
+}
 
 
 /* hamburger menu */
@@ -594,4 +599,14 @@ footer {
 #home:nth-child(3) {
     display: none;
     background-color: red;
+}
+
+/* RECUPERAR CONTRASEÑA */
+
+.bg-recover {
+    background-image: url(./assets/CoverPassword.svg);
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+
 }
