@@ -296,6 +296,36 @@ label#labelImage {
     font-weight: 600;
 }
 
+label#labelEditImage {
+    background-color: white;
+    /*align-items: center;*/
+    display: flex;
+    /*flex-flow: column;*/
+    border: 2px solid #ff0180;
+    border-radius: 100%;
+    padding-top: 50%;
+    color: #8E8E8E;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 25px;
+    padding: 20% 18% 25% 50%;
+    margin: 1% 50% 2% 18%;
+}
+
+#uploadProfile {
+    height: 74px;
+    margin: 0 -86px 0 -85px;
+}
+
+.edit {
+    margin-top: 30px;
+}
+
+.labelEdit {
+    padding: 10px;
+}
+
 .logoHome {
     height: 160px;
     width: 130px;
