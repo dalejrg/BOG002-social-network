@@ -43,9 +43,10 @@ export function Home() {
       <nav class="menuppal">
         <ul>
           <li>
+          <a href="#/editprofile">
             <button class="button_general">
             <img class="logo-Post" src=./assets/edit-icon.svg alt="arrow">
-            Edit Post</button>
+            Edit Profile</button></a>
           </li>
           <li>
             <button id="signOut" class="button_general">
