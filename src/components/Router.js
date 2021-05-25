@@ -6,6 +6,7 @@ import { Login, logInUser } from "./Login.js";
 import { Post, menuHam, postFb, userOutPost } from "./Post.js";
 import { Password, recoverPassword } from "./Password.js";
 import { getPost } from "../Firebase/Storage.js";
+import { editProfile } from "./editProfile.js";
 
 export function Router() {
     const { hash } = location;
@@ -38,6 +39,10 @@ export function Router() {
             menuHam();
             postFb();
             userOutPost();
+            break;
+        case "#/editprofile":
+            root.appendChild(editProfile());
+            menuHam();
             break;
         default:
             break;

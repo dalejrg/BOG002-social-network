@@ -40,7 +40,7 @@ export function renderPost(doc) {
       </div>
       </div>
       <div><img class="imgPost" src= ${doc.image}></div>
-      <div class="social">
+      <div class="socialPost">
       <div><img class="like" src=./assets/like.svg alt="like"></div>
       <div><img class="share" src=./assets/share.svg alt="share"></div>
       </div>
