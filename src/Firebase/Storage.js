@@ -16,8 +16,8 @@ export function getPost() {
         const timeline = [];
         changePost.forEach(post => {
             timeline.push(post.doc.data())
-            console.log({ id: post.doc.id, ...post.doc.data() })
-            renderPost(post.doc.data())
+                //console.log({ id: post.doc.id, ...post.doc.data(), date: new Date() })
+            renderPost({ id: post.doc.id, ...post.doc.data() })
         })
     })
 }
@@ -31,4 +31,10 @@ function uploadImage(file) {
         .catch((error) => {
             console.log(error.message);
         });
+}
+
+
+
+export function deleteObjPost(idPost) {
+    db.collection("usersPost").doc(idPost).delete()
 }
