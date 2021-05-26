@@ -63,7 +63,9 @@ export function addUser() {
         const email = document.querySelector("#email").value;
         const password = document.querySelector("#password").value;
         const errorInput = document.querySelector("#error");
-        singUp(email, password, errorInput);
+        const username = document.querySelector('#name').value.toLowerCase();
+
+        singUp(email, password, errorInput, username);
     });
 
     btnGoogle.addEventListener("click", (e) => {

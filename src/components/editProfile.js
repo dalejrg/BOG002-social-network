@@ -1,34 +1,12 @@
-import { reset, homeListener, menuPrincipal } from "./Utils.js";
-import { signOut } from "../Firebase/Services.js";
+import { reset } from "./Utils.js";
 
-/*const renderEachPost = (templateElement) => {
-    const timeline = templateElement.dataset.timeline;
-    const timelineData = JSON.parse(timeline);
-    timelineData.forEach((post) => {
-        renderPost(post);
-    });
-};
-
-export const renderPosts = async() => {
-    const templateApp = document.querySelector("#template");
-    const timeline = templateApp.dataset.timeline;
-
-    if (timeline) {
-        renderEachPost(templateApp);
-    } else {
-        setTimeout(() => {
-            renderEachPost(templateApp);
-        }, 3000);
-    }
-};*/
-
-export function Home() {
-    reset();
-    const template = document.createElement("div");
-    template.setAttribute("id", "home");
-    template.insertAdjacentHTML(
-        "afterbegin",
-        `<header class="headerHome">
+export function editProfile () {
+  reset();
+  const template = document.createElement("div");
+  template.setAttribute("id", "home");
+  template.insertAdjacentHTML(
+    "afterbegin",
+    `<header class="headerHome">
     <div>
       <img class="logoHome" src="./assets/LogoHome.svg" alt="Gleam logo">
     </div>
@@ -55,8 +33,28 @@ export function Home() {
         </ul>
       </nav>
     </header>
-<div id="container" class="posts">
-  <div id="render"></div>
+<div id="container" class="edits">
+    <div class="edit">
+    <label id="labelPost">
+    <button id="btnArrow"><img id="arrow" 
+    src = "./assets/post-arrow.svg"></button> Edit Profile </label>
+    <div class="labelEdit">
+    <input type = "file" id = "file" hidden>
+    <label for="file" id = "labelEditImage">
+    <img id="uploadProfile" src = "./assets/logo-image.svg"> </label>
+    </div>
+    <div class="form_styles">
+        <label for="text">Full name</label>
+        <input type="text" id="name" required/>
+        <div class="input__indicator"></div>
+    </div>     
+    <div class="form_styles">    
+        <label for="text">Biography</label>
+        <input type="text" id="bio" required/>
+        <div class="input__indicator"></div> 
+    </div>
+    <button id = "saveChanges" class="button_general" > Save Changes </button>
+    </div>
 </div>
     </div>
     <footer class="navBar">
@@ -71,23 +69,15 @@ export function Home() {
         </div>
     </footer>
     `
-    );
-    return template;
+  );
+  return template;
 }
 
-export function menu() {
+export function menuHam() {
     const nav = document.querySelector("#hamburger_menu button");
     const menuppal = document.querySelector(".menuppal");
     nav.addEventListener("click", (e) => {
-        homeListener(nav);
-        menuPrincipal(menuppal);
-    });
-}
-
-export function userOut() {
-    const logOut = document.querySelector("#signOut");
-    logOut.addEventListener("click", (e) => {
-        e.preventDefault();
-        signOut();
+      homeListener(nav);
+      menuPrincipal(menuppal);
     });
 }

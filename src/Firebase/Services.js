@@ -3,21 +3,31 @@
  * @param {string} email
  * @param {string} password
  */
-export const singUp = (email, password, errorInput) => {
+
+
+
+export const singUp = (email, password, errorInput, name) => {
+    console.log(name)
+    const db = firebase.firestore();
     const auth = firebase.auth();
     return auth
         .createUserWithEmailAndPassword(email, password)
-        .then((user) => {
+        .then((cred) => {
             window.location = "#/home";
-            return user.email;
+            //return cred.uid;
+            return db.collection('users').doc(cred.user.uid).set({
+                email: cred.user.email,
+                uid: cred.user.uid,
+                name
+            })
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            if (errorCode == 'auth/weak-password') {
-                errorInput.textContent = 'The password is too weak'
+            if (errorCode == "auth/weak-password") {
+                errorInput.textContent = "The password is too weak";
             } else {
-                errorInput.textContent = errorMessage
+                errorInput.textContent = errorMessage;
             }
             console.log(error);
         });
@@ -30,7 +40,7 @@ export const authGoogle = () => {
         .signInWithPopup(google_provider)
         .then((result) => {
             window.location = "#/home";
-            return result
+            return result;
         })
         .catch((error) => {
             // Handle Errors here.
@@ -64,28 +74,22 @@ export const login = (email, password, errorInput) => {
     return auth
         .signInWithEmailAndPassword(email, password)
         .then((user) => {
-
             window.location = "#/home";
             return user.email;
-
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            if (errorCode == 'auth/user-not-found') {
-                errorInput.textContent = 'The given email not corresponding'
-            } else if (errorCode == 'auth/wrong-password') {
-                errorInput.textContent = 'The password is invalid'
+            if (errorCode == "auth/user-not-found") {
+                errorInput.textContent = "The given email not corresponding";
+            } else if (errorCode == "auth/wrong-password") {
+                errorInput.textContent = "The password is invalid";
             } else {
-                errorInput.textContent = errorMessage
+                errorInput.textContent = errorMessage;
             }
             console.log(error);
-
         });
 };
-
-
-
 
 // sign out button
 export const signOut = () => {
@@ -93,7 +97,6 @@ export const signOut = () => {
     auth
         .signOut()
         .then(() => {
-            console.log("sign out");
             window.location = "#/";
             // Sign-out successful.
         })
@@ -109,9 +112,39 @@ export const recover = (recoveryEmail) => {
     auth
         .sendPasswordResetEmail(recoveryEmail)
         .then(() => {
-            alert ("We've sent a message to your email.");
+            alert("We've sent a message to your email.");
         })
-        .catch ((error) => {
-            alert ("Enter a valid email address.")
+        .catch((error) => {
+            alert("Enter a valid email address.");
         });
 };
+
+
+// Users collection
+
+/*function userName() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var isAnonymous = user.isAnonymous;
+            var uid = user.uid;
+            var providerData = user.providerData;
+            // ...
+        } else {
+            // User is signed out.
+            // ...
+        }
+        console.log(userName())
+    });
+}
+
+
+db.collection('users').doc(cred.user.uid).set({
+    email: cred.user.email,
+    uid: cred.user.uid,
+    user: username,
+})*/
