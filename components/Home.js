@@ -1,16 +1,38 @@
-import { reset, homeListener, menuPrincipal } from "./Utils.js";
+import { reset, homeListener, menuPrincipal, renderPost } from "./Utils.js";
 // import { signOut } from "../Firebase/Services.js";
+
+const renderEachPost = (templateElement) => {
+  const timeline = templateElement.dataset.timeline;
+  const timelineData = JSON.parse(timeline);
+  timelineData.forEach((post) => {
+    renderPost(post);
+  });
+};
+
+export const renderPosts = async () => {
+  const templateApp = document.querySelector("#template");
+  const timeline = templateApp.dataset.timeline;
+
+  if (timeline) {
+    renderEachPost(templateApp);
+  } else {
+    setTimeout(() => {
+      renderEachPost(templateApp);
+    }, 3000);
+  }
+};
 
 export function Home() {
   reset();
+
   const template = document.createElement("div");
   template.setAttribute("id", "home");
   template.insertAdjacentHTML(
     "afterbegin",
     `<header class="headerHome">
-      <div>
-        <img class="logoHome" src="./assets/LogoHome.svg" alt="Gleam logo">
-      </div>
+    <div>
+      <img class="logoHome" src="./assets/LogoHome.svg" alt="Gleam logo">
+    </div>
       <div id="hamburger_menu">
         <button>
           <span class="top_line"></span>
@@ -27,7 +49,9 @@ export function Home() {
         </ul>
       </nav>
     </header>
-    <div id="container" class="posts"> 
+<div id="container" class="posts">
+  <div id="render"></div>
+</div>
     </div>
     <footer class="navBar">
         <div>
@@ -44,6 +68,7 @@ export function Home() {
   );
   return template;
 }
+
 export function menu() {
   const nav = document.querySelector("#hamburger_menu button");
   const menuppal = document.querySelector(".menuppal");
@@ -52,6 +77,21 @@ export function menu() {
     menuPrincipal(menuppal);
   });
 }
+
+/*db.collection("usersPost").onSnapshot()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                //console.log(doc.id, " => ", doc.data());
+                renderPost(doc.data());
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+}
+
+
 /*<div class="btns-container-mobile">
           <button id="signOut" class="button_general">LogOut</button>
         </div>*/

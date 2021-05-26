@@ -58,11 +58,29 @@ export function menuHam() {
     homeListener(nav);
     menuPrincipal(menuppal);
   });
+}
+
+export function postFb() {
+  //Preview Image
+  const inputFile = document.querySelector("#file");
+  const image = document.querySelector("#upload");
+  image.setAttribute("class", "imgUpload");
+  inputFile.onchange = (e) => {
+    e.preventDefault();
+    const [file] = inputFile.files;
+    if (file) {
+      image.src = URL.createObjectURL(file);
+    }
+  };
+  //Add Post
   const addPost = document.querySelector("#addPost");
   addPost.addEventListener("click", (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const file = document.querySelector("#file").files[0];
     const text = document.querySelector("#addText").value;
     createPost(file, text);
+    setTimeout(() => {
+      window.location.assign("#/home");
+    }, 2000);
   });
 }
