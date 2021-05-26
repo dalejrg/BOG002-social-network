@@ -6,7 +6,8 @@
 
 
 
-export const singUp = (email, password, errorInput) => {
+export const singUp = (email, password, errorInput, name) => {
+    console.log(name)
     const db = firebase.firestore();
     const auth = firebase.auth();
     return auth
@@ -17,6 +18,7 @@ export const singUp = (email, password, errorInput) => {
             return db.collection('users').doc(cred.user.uid).set({
                 email: cred.user.email,
                 uid: cred.user.uid,
+                name
             })
         })
         .catch((error) => {

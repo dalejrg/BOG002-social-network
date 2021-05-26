@@ -1,4 +1,4 @@
-import { renderPost } from "../components/Utils.js"
+import { renderPost, cleanPost } from "../components/Utils.js"
 
 const db = firebase.firestore();
 export function savePost(file, description) {
@@ -12,12 +12,15 @@ export function savePost(file, description) {
 
 export function getPost() {
     db.collection("usersPost").onSnapshot(query => {
-        let changePost = query.docChanges();
+        let changePost = query.docs;
+        console.log(query)
         const timeline = [];
+        cleanPost()
         changePost.forEach(post => {
-            timeline.push(post.doc.data())
+            console.log(post)
+            timeline.push(post.data())
                 //console.log({ id: post.doc.id, ...post.doc.data(), date: new Date() })
-            renderPost({ id: post.doc.id, ...post.doc.data() })
+            renderPost({ id: post.id, ...post.data() })
         })
     })
 }
@@ -36,5 +39,9 @@ function uploadImage(file) {
 
 
 export function deleteObjPost(idPost) {
-    db.collection("usersPost").doc(idPost).delete()
+    db.collection("usersPost").doc(idPost).delete().then(() => {
+        console.log("Document successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
 }
