@@ -7,6 +7,15 @@ export function reset() {
     }
 }
 
+export function cleanPost() {
+    const containerPost = document.querySelector("#render");
+    if (containerPost) {
+        containerPost.innerHTML = "";
+    }
+}
+
+
+
 export function showPassword(input, show, hide) {
     input.type = ("type", "text");
     show.style.display = "none";
@@ -60,6 +69,7 @@ export function renderPost(doc) {
     <div><p class="textPost">${doc.description}</p></div>
     <div><input type="text" class="comment" placeholder="Write a comment"/></div>
 </div>
+<!-- Es una prueba -->
 ${previewHTML}
 `;
     /*const btnDots = document.querySelector('#dots')
