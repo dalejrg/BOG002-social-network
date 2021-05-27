@@ -1,12 +1,15 @@
 import { renderPost, cleanPost } from "../components/Utils.js"
 
+
 const db = firebase.firestore();
-export function savePost(file, description) {
+export function savePost(file, description, idUser, name) {
     uploadImage(file).then((url) => {
         db.collection("usersPost").doc().set({
             image: url,
             description,
             date: firebase.firestore.FieldValue.serverTimestamp(),
+            name,
+            idUser,
         });
     });
 }
@@ -20,7 +23,7 @@ export function getPost() {
             console.log(post)
             timeline.push(post.data())
                 //console.log({ id: post.doc.id, ...post.doc.data(), date: new Date() })
-            renderPost({ id: post.id, ...post.data() })
+            renderPost({ id: post.id, ...post.data(), })
         })
     })
 }

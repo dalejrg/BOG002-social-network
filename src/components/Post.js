@@ -86,7 +86,10 @@ export function postFb() {
         // e.preventDefault();
         const file = document.querySelector("#file").files[0];
         const text = document.querySelector("#addText").value;
-        savePost(file, text);
+        const auth = firebase.auth();
+        const idUser = auth.currentUser.uid;
+        const userName = auth.currentUser.displayName;
+        savePost(file, text, idUser, userName);
         setTimeout(() => {
             window.location.assign("#/home");
         }, 2000);

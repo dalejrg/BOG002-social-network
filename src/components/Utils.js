@@ -42,13 +42,13 @@ export function renderPost(doc) {
     const auth = firebase.auth();
     const idUser = auth.currentUser.uid;
     const userName = auth.currentUser.displayName;
-    console.log("que aparece?", userName)
+    console.log("que aparece?", userName, idUser)
     containerPost.innerHTML = `
 <div class="newPost">
     <div class="headerPost">
 
     <div class="user">
-    <div class="name">${userName}</div>
+    <div class="name">${doc.name}</div>
     <div class="timePost">${new Date().toLocaleDateString('es-CO')}</div>
     </div>
 
@@ -85,6 +85,7 @@ ${previewHTML}
 
     const deletePost = document.querySelector(`#deletePost-${doc.id}`)
     deletePost.addEventListener("click", () => {
+        if (user = !null) {}
         deleteObjPost(`${doc.id}`);
     })
 }
