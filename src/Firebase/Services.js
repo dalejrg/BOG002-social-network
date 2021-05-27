@@ -21,6 +21,7 @@ export const singUp = (email, password, errorInput, name) => {
             return db.collection('users').doc(cred.user.uid).set({
                 email: cred.user.email,
                 uid: cred.user.uid,
+
             })
         })
         .catch((error) => {
