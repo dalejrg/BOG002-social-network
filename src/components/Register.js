@@ -63,7 +63,7 @@ export function addUser() {
         const email = document.querySelector("#email").value;
         const password = document.querySelector("#password").value;
         const errorInput = document.querySelector("#error");
-        const username = document.querySelector('#name').value.toLowerCase();
+        const username = document.querySelector('#name').value;
 
         singUp(email, password, errorInput, username);
     });

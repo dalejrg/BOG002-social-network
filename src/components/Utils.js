@@ -39,12 +39,16 @@ export function menuPrincipal(navegator) {
 export function renderPost(doc) {
     const containerPost = document.querySelector("#render");
     const previewHTML = containerPost.innerHTML;
+    const auth = firebase.auth();
+    const idUser = auth.currentUser.uid;
+    const userName = auth.currentUser.displayName;
+    console.log("que aparece?", userName)
     containerPost.innerHTML = `
 <div class="newPost">
     <div class="headerPost">
 
     <div class="user">
-    <div class="name">Username</div>
+    <div class="name">${userName}</div>
     <div class="timePost">${new Date().toLocaleDateString('es-CO')}</div>
     </div>
 
@@ -80,7 +84,6 @@ ${previewHTML}
     edit.addEventListener("click", () => {});
 
     const deletePost = document.querySelector(`#deletePost-${doc.id}`)
-    console.log(deletePost)
     deletePost.addEventListener("click", () => {
         deleteObjPost(`${doc.id}`);
     })
