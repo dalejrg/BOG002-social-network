@@ -6,14 +6,14 @@ export function savePost(file, description) {
         db.collection("usersPost").doc().set({
             image: url,
             description,
+            date: firebase.firestore.FieldValue.serverTimestamp(),
         });
     });
 }
 
 export function getPost() {
-    db.collection("usersPost").onSnapshot(query => {
+    db.collection("usersPost").orderBy('date', 'asc').onSnapshot(query => {
         let changePost = query.docs;
-        console.log(query)
         const timeline = [];
         cleanPost()
         changePost.forEach(post => {
