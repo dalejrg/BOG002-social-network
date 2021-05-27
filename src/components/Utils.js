@@ -42,7 +42,7 @@ export function renderPost(doc) {
     const auth = firebase.auth();
     const idUser = auth.currentUser.uid;
     const userName = auth.currentUser.displayName;
-    console.log("que aparece?", userName, idUser)
+    //console.log("que aparece?", userName, idUser)
     containerPost.innerHTML = `
 <div class="newPost">
     <div class="headerPost">
@@ -98,7 +98,9 @@ ${previewHTML}
 
     const deletePost = document.querySelector(`#deletePost-${doc.id}`)
     deletePost.addEventListener("click", () => {
-        if (user = !null) {}
-        deleteObjPost(`${doc.id}`);
+        const idUser = auth.currentUser.uid;
+        if (doc.idUser === idUser) {
+            deleteObjPost(`${doc.id}`);
+        } else { console.error("tu no publicaste este post") }
     })
 }
