@@ -709,3 +709,7 @@ footer {
     text-align: left;
     margin: 0 8px;
 }
+
+.inputPost {
+    display: none;
+}

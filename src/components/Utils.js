@@ -70,7 +70,9 @@ export function renderPost(doc) {
     <div><img class="like" src=./assets/like.svg alt="like"></div>
     <div><img class="share" src=./assets/share.svg alt="share"></div>
     </div>
-    <div><p class="textPost">${doc.description}</p></div>
+    <div><p class="textPost">${doc.description}</p>
+    <input class="inputPost comment">
+    </div>
     <div><input type="text" class="comment" placeholder="Write a comment"/></div>
 </div>
 <!-- Es una prueba -->
@@ -80,8 +82,19 @@ ${previewHTML}
     btnDots.addEventListener("click", () => {
     });*/
 
+
     const edit = document.querySelector('#editPost')
-    edit.addEventListener("click", () => {});
+    const editPost = document.querySelector('.inputPost')
+    edit.addEventListener("click", () => {
+        editPost.style.display = "block"
+        editPost.setAttribute("placeholder", `${doc.description}`)
+            //editPost.addClass("comment")
+        const p = document.querySelector(".textPost")
+        p.style.display = "none"
+    });
+
+
+
 
     const deletePost = document.querySelector(`#deletePost-${doc.id}`)
     deletePost.addEventListener("click", () => {
