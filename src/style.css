@@ -654,7 +654,7 @@ footer {
 }
 
 .comment {
-    width: 250px;
+    width: 90%;
     height: 40px;
     border: 0;
     background: #dfdfdf62;
@@ -662,6 +662,7 @@ footer {
     margin-bottom: 20px;
     outline: none;
     padding: 15px;
+    margin: 5px auto;
 }
 
 .comment::placeholder {
@@ -695,7 +696,7 @@ footer {
     border-radius: 5px;
     height: 70px;
     right: 3rem;
-    /*z-index: -1;*/
+    transform: translate(0, 35px);
 }
 
 .optionPost ul {
@@ -712,4 +713,8 @@ footer {
 
 .inputPost {
     display: none;
+}
+
+#editPost, button[id^="deletePost-"]{
+    height: 20px;
 }
