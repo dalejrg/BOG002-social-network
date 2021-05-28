@@ -48,3 +48,23 @@ export function deleteObjPost(idPost) {
         console.error("Error removing document: ", error);
     });
 }
+
+export function updateObjPost (id, description) {
+    const updatePost = db.collection("usersPost").doc(id);
+    const editar = document.querySelector(".inputPost").value;
+    return updatePost.update({
+        description: editar,
+        })
+        .then(() => {
+            console.log("Document successfully update!");
+        }).catch((error) => {
+            console.error("Error update document: ", error);
+        });
+}
+    
+
+
+
+
+// Set the "capital" field of the city 'DC'
+
