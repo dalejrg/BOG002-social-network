@@ -637,6 +637,7 @@ footer {
     margin: 10px;
     text-align: left;
     font-size: 13px;
+    margin-left: 20px;
 }
 
 .socialPost {
@@ -710,6 +711,42 @@ footer {
     margin: 0 8px;
 }
 
-.inputPost {
+
+/*Input pildora*/
+
+.formPost {
     display: none;
+    margin-top: 15px;
+}
+
+.wrap {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.inputPost {
+    width: 180px;
+    height: 40px;
+    margin-left: 15px;
+    border-radius: 50px 0px 0px 50px;
+    border: 1px solid #9423BC;
+    background: #dfdfdf62;
+    margin-bottom: 20px;
+    outline: none;
+    padding: 15px;
+}
+
+.savePost {
+    height: 40px;
+    width: 68px;
+    border-radius: 0px 50px 50px 0px;
+    background: #9423BC;
+    border: none;
+    color: white;
+    font-size: 14px;
+}
+
+.savePost:hover {
+    background-color: #DE4DD8;
 }
