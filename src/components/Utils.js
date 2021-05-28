@@ -46,36 +46,35 @@ export function renderPost(doc) {
     containerPost.innerHTML = `
 <div class="newPost">
     <div class="headerPost">
-
     <div class="user">
     <div class="name">${doc.name}</div>
     <div class="timePost">${new Date().toLocaleDateString('es-CO')}</div>
     </div>
-
     <div class="options">
     <button id="dots"><img class="btn-options" src=./assets/btn-options.svg alt="options"></button>
     </div>
-
     <nav class="optionPost">
     <ul>
     <li><button id="editPost">Edit</button></li>
     <li><button id="deletePost-${doc.id}">Delete</button></li>
     </ul>
     </nav>
-
     </div>
-    
     <div><img class="imgPost" src= ${doc.image}></div>
     <div class="socialPost">
     <div><img class="like" src=./assets/like.svg alt="like"></div>
     <div><img class="share" src=./assets/share.svg alt="share"></div>
     </div>
     <div><p class="textPost">${doc.description}</p>
-    <input class="inputPost comment">
+    <form class="formPost">
+    <div class="wrap">
+    <input type="text" class="inputPost">
+    <input type="submit" class="savePost" value="Save">
+    </div>
+    </form>
     </div>
     <div><input type="text" class="comment" placeholder="Write a comment"/></div>
 </div>
-<!-- Es una prueba -->
 ${previewHTML}
 `;
     /*const btnDots = document.querySelector('#dots')
@@ -84,18 +83,18 @@ ${previewHTML}
 
 
     const edit = document.querySelector('#editPost')
-    const editPost = document.querySelector('.inputPost')
+    const editPost = document.querySelector('.formPost')
+    const editText = document.querySelector('.inputPost')
+    const p = document.querySelector(".textPost")
     edit.addEventListener("click", () => {
         editPost.style.display = "block"
-        editPost.setAttribute("placeholder", `${doc.description}`)
-            //editPost.addClass("comment")
-        const p = document.querySelector(".textPost")
+        editText.setAttribute("placeholder", `${doc.description}`)
         p.style.display = "none"
     });
 
 
 
-
+    //Delete post
     const deletePost = document.querySelector(`#deletePost-${doc.id}`)
     deletePost.addEventListener("click", () => {
         const idUser = auth.currentUser.uid;
