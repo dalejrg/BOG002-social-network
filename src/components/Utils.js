@@ -1,4 +1,4 @@
-import { deleteObjPost } from "../Firebase/Storage.js"
+import { deleteObjPost, updateObjPost } from "../Firebase/Storage.js"
 
 export function reset() {
     const template = document.querySelector("#template");
@@ -55,7 +55,7 @@ export function renderPost(doc) {
     </div>
     <nav class="optionPost">
     <ul>
-    <li><button id="editPost">Edit</button></li>
+    <li><button id="editPost-${doc.id}">Edit</button></li>
     <li><button id="deletePost-${doc.id}">Delete</button></li>
     </ul>
     </nav>
@@ -82,14 +82,24 @@ ${previewHTML}
     });*/
 
 
-    const edit = document.querySelector('#editPost')
+    const edit = document.querySelector(`#editPost-${doc.id}`);
     const editPost = document.querySelector('.formPost')
     const editText = document.querySelector('.inputPost')
-    const p = document.querySelector(".textPost")
+    const savePost = document.querySelector('.savePost')
+    const p = document.querySelector(".textPost");
     edit.addEventListener("click", () => {
         editPost.style.display = "block"
         editText.setAttribute("placeholder", `${doc.description}`)
         p.style.display = "none"
+    savePost.addEventListener("click", ()=> {
+        const userId = auth.currentUser.uid;
+        console.log(doc.idUser)
+        console.log(userId)
+        if (userId === doc.idUser) {
+            updateObjPost(`${doc.id}`, `${doc.description}`);
+        } else { console.error("tu no publicaste este post") }
+    })
+    
     });
 
 
@@ -102,4 +112,7 @@ ${previewHTML}
             deleteObjPost(`${doc.id}`);
         } else { console.error("tu no publicaste este post") }
     })
+
+    
+        
 }
