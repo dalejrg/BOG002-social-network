@@ -5,8 +5,11 @@ import { Home, menu, userOut } from "./Home.js";
 import { Login, logInUser } from "./Login.js";
 import { Post, menuHam, postFb, userOutPost } from "./Post.js";
 import { Password, recoverPassword } from "./Password.js";
-import { getPost } from "../Firebase/Storage.js";
+import { getPost, sendMessages } from "../Firebase/Storage.js";
 import { editProfile } from "./editProfile.js";
+import { Chat } from "./Chat.js";
+
+
 
 export function Router() {
     const { hash } = location;
@@ -44,6 +47,11 @@ export function Router() {
             root.appendChild(editProfile());
             menuHam();
             break;
+        case "#/chat":
+            root.appendChild(Chat());
+            menuHam();
+            sendMessages();
+            break;    
         default:
             break;
         case "#/password":
