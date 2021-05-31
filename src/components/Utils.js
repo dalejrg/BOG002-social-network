@@ -1,5 +1,6 @@
 import { deleteObjPost, updateObjPost } from "../Firebase/Storage.js"
 
+
 export function reset() {
     const template = document.querySelector("#template");
     if (template) {
@@ -14,6 +15,12 @@ export function cleanPost() {
     }
 }
 
+export function cleanChat() {
+    const containerChat = document.querySelector("#inputMessage");
+    if (containerChat) {
+        containerChat.value = "";
+    }
+}
 
 
 export function showPassword(input, show, hide) {
@@ -103,7 +110,6 @@ ${previewHTML}
     });
 
 
-
     //Delete post
     const deletePost = document.querySelector(`#deletePost-${doc.id}`)
     deletePost.addEventListener("click", () => {
@@ -116,3 +122,4 @@ ${previewHTML}
     
         
 }
+
