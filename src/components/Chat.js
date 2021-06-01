@@ -51,7 +51,7 @@ export function Chat() {
     </div>
     <form class="inputSend" id="formSend">
         <div class= "wrapChat">
-        <input type="text" placeholder = "Write your message" class= "inputChat" id="inputMessage">
+        <input type="text" placeholder = "Write your message" class= "inputChat" id="inputMessage" autocomplete="off">
         <input type="submit" class="sendChat" id="btnSend" value="Send">
         </div>
     </form>
@@ -79,4 +79,3 @@ export function menuHam() {
         menuPrincipal(menuppal);
     });
 }
-

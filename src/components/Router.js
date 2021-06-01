@@ -11,6 +11,7 @@ import { Chat } from "./Chat.js";
 
 
 
+
 export function Router() {
     const { hash } = location;
     const root = document.querySelector("#template");
@@ -51,7 +52,7 @@ export function Router() {
             root.appendChild(Chat());
             menuHam();
             sendMessages();
-            break;    
+            break;
         default:
             break;
         case "#/password":

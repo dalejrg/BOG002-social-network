@@ -45,7 +45,7 @@ export function Register() {
                 <button><img id="logoGoogle" src=./assets/logo-google.svg></button>
               </div>
               <span>Already have an Account?
-                  <a href="#/login">Sign Up</a>
+                  <a href="#/login">Sign In</a>
               </span>
             </div>`;
 
