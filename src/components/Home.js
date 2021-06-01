@@ -67,7 +67,7 @@ export function Home() {
           <a href="#/post"><img class="logo-Post" src=./assets/Post.svg alt="arrow"></a>
         </div>
         <div>
-          <a href="#/"><img class="logo-Profile" src=./assets/Profile.svg alt="arrow"></a>
+          <a href="#/chat"><img class="logo-Profile" src=./assets/inbox.svg alt="arrow"></a>
         </div>
     </footer>
     `
