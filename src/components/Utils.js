@@ -66,10 +66,10 @@ export function renderPost(doc) {
         </button>
     </div>
 
-    <nav id="optionPost" class="optionPost">
+    <nav id="optionPost" class="optionPost-${doc.id}">
         <ul>
-            <li><button class="button_general" id="editPost-${doc.id}">Edit</button></li>
-            <li><button class="button_general" id="deletePost-${doc.id}">Delete</button></li>
+            <li><button class="edit-${doc.id} button_general" id="editPost-${doc.id}">Edit</button></li>
+            <li><button class="delete-${doc.id} button_general" id="deletePost-${doc.id}">Delete</button></li>
         </ul>
     </nav>
     </div>
@@ -87,11 +87,11 @@ export function renderPost(doc) {
     </div>
     </div>
 
-    <div><p class="textPost">${doc.description}</p>
-    <form class="formPost">
+    <div><p class="textPost textPost-${doc.id}">${doc.description}</p>
+    <form class="formPost form-${doc.id}">
     <div class="wrap">
-    <input type="text" class="inputPost">
-    <input type="submit" class="savePost" value="Save">
+    <input type="text" class="inputPost inputPost-${doc.id}">
+    <input type="submit" class="savePost savePost-${doc.id}" value="Save">
     </div>
     </form>
     </div>
@@ -108,7 +108,7 @@ export function renderPost(doc) {
     // });
 
     containerPost.addEventListener('click', e => {
-        const popUp = document.querySelector(".optionPost");
+        const popUp = document.querySelector(`.optionPost-${doc.id}`);
         if (e.target.classList.contains(`more-btn-${doc.id}`)) {
             popUp.style.display = 'block'
             console.log("traeme la clase")
@@ -128,25 +128,57 @@ export function renderPost(doc) {
         }, 1000);
     });
 
-    //Update post
-    const edit = document.querySelector(`#editPost-${doc.id}`);
-    const editPost = document.querySelector('.formPost')
-    const editText = document.querySelector('.inputPost')
-    const savePost = document.querySelector('.savePost')
-    const p = document.querySelector('.textPost');
-    edit.addEventListener('click', () => {
-        editPost.style.display = 'block'
-        editText.setAttribute('placeholder', `${doc.description}`)
-        p.style.display = 'none'
-        savePost.addEventListener('click', () => {
-            const userId = auth.currentUser.uid;
-            const editedText = document.querySelector('.inputPost').value;
+
+    //Update post new
+    containerPost.addEventListener('click', e => {
+        const editPost = document.querySelector(`.form-${doc.id}`)
+        const editText = document.querySelector(`.inputPost-${doc.id}`)
+        const p = document.querySelector(`.textPost-${doc.id}`);
+        if (e.target.classList.contains(`edit-${doc.id}`)) {
+            editPost.style.display = 'block'
+            p.style.display = 'none'
+            editText.setAttribute('placeholder', `${doc.description}`)
+        }
+    })
+
+    containerPost.addEventListener('click', e => {
+        const userId = auth.currentUser.uid;
+        const editPost = document.querySelector(`.form-${doc.id}`)
+        const p = document.querySelector(`.textPost-${doc.id}`);
+        const popUp = document.querySelector(`.optionPost-${doc.id}`);
+        const editedText = document.querySelector(`.inputPost-${doc.id}`).value
+        if (e.target.classList.contains(`savePost-${doc.id}`)) {
             if (userId === doc.idUser) {
                 updateObjPost(`${doc.id}`, editedText);
-            } else { console.error('tu no publicaste este post') }
-        })
+            } else {
+                editPost.style.display = 'none'
+                popUp.style.display = 'none'
+                p.style.display = 'block'
+                console.error('tu no publicaste este post')
+            }
+        }
+    })
 
-    });
+
+    //Update post old
+    /*const edit = document.querySelector(`#editPost-${doc.id}`);
+        const editPost = document.querySelector('.formPost')
+        const editText = document.querySelector('.inputPost')
+        const savePost = document.querySelector('.savePost')
+        const p = document.querySelector('.textPost');
+        edit.addEventListener('click', () => {
+            editPost.style.display = 'block'
+            editText.setAttribute('placeholder', `${doc.description}`)
+            p.style.display = 'none'
+            savePost.addEventListener('click', () => {
+                const userId = auth.currentUser.uid;
+                const editedText = document.querySelector('.inputPost').value;
+                if (userId === doc.idUser) {
+                    updateObjPost(`${doc.id}`, editedText);
+                } else { console.error('tu no publicaste este post') }
+            })
+
+        });*/
 
     //Delete post
     const deletePost = document.querySelector(`#deletePost-${doc.id}`)
