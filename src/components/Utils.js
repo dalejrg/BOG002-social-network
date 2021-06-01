@@ -1,5 +1,6 @@
 import { deleteObjPost, updateObjPost, likeObjPost } from "../Firebase/Storage.js"
 
+
 export function reset() {
     const template = document.querySelector("#template");
     if (template) {
@@ -13,6 +14,14 @@ export function cleanPost() {
         containerPost.innerHTML = "";
     }
 }
+
+export function cleanChat() {
+    const containerChat = document.querySelector("#inputMessage");
+    if (containerChat) {
+        containerChat.value = "";
+    }
+}
+
 
 export function showPassword(input, show, hide) {
     input.type = ("type", "text");
@@ -34,31 +43,37 @@ export function menuPrincipal(navegator) {
     navegator.classList.toggle("is_active");
 }
 
+
+
+const auth = firebase.auth();
 export function renderPost(doc) {
     const containerPost = document.querySelector("#render");
-    const previewHTML = containerPost.innerHTML;
-    const auth = firebase.auth();
-    containerPost.innerHTML = `
-<div class="newPost">
+    const div = document.createElement("div")
+        //const previewHTML = containerPost.innerHTML;
+    div.insertAdjacentHTML("afterbegin",
+        `<div class="newPost">
     <div class="headerPost">
     <div class="user">
     <div class="name">${doc.name}</div>
     <div class="timePost">${(new Date(doc.date.seconds * 1000)).toLocaleDateString('es-CO')}</div>
     </div>
+    
     <div>
-        <button id="more-btn" class="more-btn">
+        <button id="more-btn" class="more-btn-${doc.id}">
             <span class="more-dot"></span>
             <span class="more-dot"></span>
             <span class="more-dot"></span>
         </button>
     </div>
-    <nav class="optionPost">
-    <ul>
-    <li><button class="button_general" id="editPost-${doc.id}">Edit</button></li>
-    <li><button class="button_general" id="deletePost-${doc.id}">Delete</button></li>
-    </ul>
+
+    <nav id="optionPost" class="optionPost">
+        <ul>
+            <li><button class="button_general" id="editPost-${doc.id}">Edit</button></li>
+            <li><button class="button_general" id="deletePost-${doc.id}">Delete</button></li>
+        </ul>
     </nav>
     </div>
+
     <div><img class="imgPost" src= ${doc.image}></div>
 
     <div class="socialPost">
@@ -68,7 +83,7 @@ export function renderPost(doc) {
     </div>
     <button class="btn-share"><img class="share" src=./assets/share.svg></button>
     <div class="likeCounter">
-    <div><img class="liked" src=./assets/gleamLike.svg alt="liked"></div>
+    <div><img class="liked-${doc.id}" src=./assets/gleamLike.svg alt="liked"></div>
     </div>
     </div>
 
@@ -82,18 +97,29 @@ export function renderPost(doc) {
     </div>
     <div><input type="text" class="comment" placeholder="Write a comment"/></div>
 </div>
-${previewHTML}
-`;
+`)
+    containerPost.appendChild(div);
+    // ${previewHTML}
 
-    const btnDots = document.querySelector("#more-btn");
-    const menu = document.querySelector(".optionPost");
-    btnDots.addEventListener("click", () => {
-        menuPrincipal(menu);
-    });
+    // const btnDots = document.querySelector("#more-btn");
+    // const menu = document.querySelector(".optionPost");
+    // btnDots.addEventListener("click", () => {
+    //     menuPrincipal(menu)
+    // });
+
+    containerPost.addEventListener('click', e => {
+        const popUp = document.querySelector(".optionPost");
+        if (e.target.classList.contains(`more-btn-${doc.id}`)) {
+            popUp.style.display = 'block'
+            console.log("traeme la clase")
+        }
+    })
+
 
     //Liked post 
     const btnLike = document.querySelector(`#like-${doc.id}`)
-    const likedIcon = document.querySelector('.liked')
+    const likedIcon = document.querySelector(`.liked-${doc.id}`)
+    likedIcon.style.display = 'none'
     btnLike.addEventListener('click', () => {
         likedIcon.style.display = 'block'
         setTimeout(() => {

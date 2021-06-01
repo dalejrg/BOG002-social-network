@@ -1,5 +1,13 @@
-import { renderPost, cleanPost } from "../components/Utils.js"
+import { renderPost, cleanPost, cleanChat } from "../components/Utils.js"
 
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        sendMessages(user)
+    } else {
+        // No user is signed in.
+    }
+});
 
 const db = firebase.firestore();
 export function savePost(file, description, idUser, name) {
@@ -16,9 +24,8 @@ export function savePost(file, description, idUser, name) {
 }
 
 export function getPost() {
-    db.collection('usersPost').orderBy('date', 'asc').onSnapshot(query => {
+    db.collection('usersPost').orderBy('date', 'desc').onSnapshot(query => {
         let changePost = query.docs;
-        console.log(changePost)
         const timeline = [];
         cleanPost()
         changePost.forEach(post => {
@@ -58,6 +65,72 @@ export function updateObjPost(idPost, newText) {
             console.error('Error update document: ', error);
         });
 }
+
+/*export function sendMessages (user) {
+    const send = document.querySelector('#inputMessage').value;
+    return db.collection('chat').add({
+        message: send,
+        user,
+        date: Date.now(),
+    })
+    .then(() => {
+        console.log('Mensaje enviado')
+    })
+    .catch((error) => {
+        console.log('Error de mensaje', error);
+    });
+}*/
+
+export const sendMessages = () => {
+    const auth = firebase.auth();
+    const user = auth.currentUser;
+    const form = document.querySelector("#formSend");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const send = document.querySelector('#inputMessage').value;
+        db.collection('chat').add({
+                message: send,
+                uid: user.uid,
+                date: firebase.firestore.FieldValue.serverTimestamp(),
+                name: user.displayName,
+            })
+            .then(() => {
+                console.log("mensaje enviado")
+                    //console.log('Mensaje enviado')
+            }).catch(error => console.log(error))
+        cleanChat();
+    });
+    db.collection("chat").orderBy('date').onSnapshot(query => {
+        const content = document.querySelector('#protectedContent');
+        content.innerHTML = '';
+        query.forEach(doc => {
+            if (doc.data().uid === user.uid) {
+                content.innerHTML += `
+            <div class="containerMessageUser">
+                <span class="userMessage" id="userMessage">
+                <div class="nameChat">${doc.data().name}</div>
+                    ${doc.data().message}
+                </span>
+            </div>
+            `
+            } else {
+                content.innerHTML += `
+            <div class="containerMessage">
+                <span class="destinataryMessage" id="destinataryMessage">
+                <div class="nameChat">${doc.data().name}</div>
+                    ${doc.data().message}
+                </span>
+            </div>
+            `
+            }
+        })
+        content.scrollTop = content.scrollHeight
+    })
+
+}
+
+
+// Set the "capital" field of the city 'DC'
 
 export function likeObjPost(idPost, incrementer) {
     const postLikeUsers = db.collection('usersPost').doc(idPost);
