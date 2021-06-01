@@ -743,10 +743,6 @@ footer {
     background-color: #9423BC;
     border-radius: 5px;
     height: 70px;
-<<<<<<< HEAD
-    right: 3rem;
-    transform: translate(0, 35px);
-=======
     top: 10px;
     right: 10px;
     transform: translate(0, 35px);
@@ -756,7 +752,6 @@ footer {
 #optionPost.is_active {
     display: block;
     transform: translate(1%, 29px);
->>>>>>> 3475a44e3c76ccd94db99a1f1f6434ac4d2535b4
 }
 
 #optionPost ul {
@@ -771,8 +766,6 @@ footer {
     margin: 0 8px;
 }
 
-<<<<<<< HEAD
-=======
 button[id^="editPost-"],
 button[id^="deletePost-"] {
     height: 20px;
@@ -793,15 +786,10 @@ button[id^="deletePost-"] {
     flex-direction: row;
 }
 
->>>>>>> 3475a44e3c76ccd94db99a1f1f6434ac4d2535b4
 .inputPost {
     display: none;
 }
 
-<<<<<<< HEAD
-#editPost, button[id^="deletePost-"]{
-    height: 20px;
-=======
 .savePost:hover {
     background-color: #DE4DD8;
 }
@@ -937,5 +925,4 @@ span.userMessage {
     font-family: 'Lato', sans-serif;
     text-align: center;
     font-size: 20px;
->>>>>>> 3475a44e3c76ccd94db99a1f1f6434ac4d2535b4
 }
