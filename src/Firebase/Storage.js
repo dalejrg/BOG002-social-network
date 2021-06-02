@@ -1,33 +1,43 @@
-import { renderPost, cleanPost } from "../components/Utils.js"
+import { renderPost, cleanPost, cleanChat } from "../components/Utils.js"
+
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        sendMessages(user)
+    } else {
+        // No user is signed in.
+    }
+});
 
 const db = firebase.firestore();
-export function savePost(file, description) {
+export function savePost(file, description, idUser, name) {
     uploadImage(file).then((url) => {
-        db.collection("usersPost").doc().set({
+        db.collection('usersPost').doc().set({
             image: url,
             description,
+            date: firebase.firestore.FieldValue.serverTimestamp(),
+            name,
+            idUser,
+            likesCount: 0,
         });
     });
 }
 
 export function getPost() {
-    db.collection("usersPost").onSnapshot(query => {
+    db.collection('usersPost').orderBy('date', 'desc').onSnapshot(query => {
         let changePost = query.docs;
-        console.log(query)
         const timeline = [];
         cleanPost()
         changePost.forEach(post => {
-            console.log(post)
             timeline.push(post.data())
-                //console.log({ id: post.doc.id, ...post.doc.data(), date: new Date() })
-            renderPost({ id: post.id, ...post.data() })
+            renderPost({ id: post.id, ...post.data(), })
         })
     })
 }
 
 function uploadImage(file) {
     const name = file.name || "";
-    const ref = firebase.storage().ref("/userProfileImgs/" + name);
+    const ref = firebase.storage().ref('/userProfileImgs/' + name);
     const uploadTask = ref.put(file);
     return uploadTask
         .then((snapshot) => snapshot.ref.getDownloadURL())
@@ -36,12 +46,100 @@ function uploadImage(file) {
         });
 }
 
-
-
 export function deleteObjPost(idPost) {
-    db.collection("usersPost").doc(idPost).delete().then(() => {
-        console.log("Document successfully deleted!");
+    db.collection('usersPost').doc(idPost).delete().then(() => {
+        console.log('Document successfully deleted!');
     }).catch((error) => {
-        console.error("Error removing document: ", error);
+        console.error('Error removing document: ', error);
     });
+}
+
+export function updateObjPost(idPost, newText) {
+    const updatePost = db.collection('usersPost').doc(idPost);
+    return updatePost.update({
+            description: newText,
+        })
+        .then(() => {
+            console.log('Document successfully update!');
+        }).catch((error) => {
+            console.error('Error update document: ', error);
+        });
+}
+
+/*export function sendMessages (user) {
+    const send = document.querySelector('#inputMessage').value;
+    return db.collection('chat').add({
+        message: send,
+        user,
+        date: Date.now(),
+    })
+    .then(() => {
+        console.log('Mensaje enviado')
+    })
+    .catch((error) => {
+        console.log('Error de mensaje', error);
+    });
+}*/
+
+export const sendMessages = () => {
+    const auth = firebase.auth();
+    const user = auth.currentUser;
+    const form = document.querySelector("#formSend");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const send = document.querySelector('#inputMessage').value;
+        db.collection('chat').add({
+                message: send,
+                uid: user.uid,
+                date: firebase.firestore.FieldValue.serverTimestamp(),
+                name: user.displayName,
+            })
+            .then(() => {
+                console.log("mensaje enviado")
+                    //console.log('Mensaje enviado')
+            }).catch(error => console.log(error))
+        cleanChat();
+    });
+    db.collection("chat").orderBy('date').onSnapshot(query => {
+        const content = document.querySelector('#protectedContent');
+        content.innerHTML = '';
+        query.forEach(doc => {
+            if (doc.data().uid === user.uid) {
+                content.innerHTML += `
+            <div class="containerMessageUser">
+                <span class="userMessage" id="userMessage">
+                <div class="nameChat">${doc.data().name}</div>
+                    ${doc.data().message}
+                </span>
+            </div>
+            `
+            } else {
+                content.innerHTML += `
+            <div class="containerMessage">
+                <span class="destinataryMessage" id="destinataryMessage">
+                <div class="nameChat">${doc.data().name}</div>
+                    ${doc.data().message}
+                </span>
+            </div>
+            `
+            }
+        })
+        content.scrollTop = content.scrollHeight
+    })
+
+}
+
+
+// Set the "capital" field of the city 'DC'
+
+export function likeObjPost(idPost, incrementer) {
+    const postLikeUsers = db.collection('usersPost').doc(idPost);
+    return postLikeUsers.update({
+            likesCount: incrementer,
+        })
+        .then(() => {
+            console.log('Document successfully liked!');
+        }).catch((error) => {
+            console.error('Error liked document: ', error);
+        });
 }

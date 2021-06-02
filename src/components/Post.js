@@ -37,7 +37,8 @@ export function Post() {
     </header>
     <div id="container" class="posts">
     <div class="posts"> 
-        <label id="labelPost"><button id="btnArrow"><img id="arrow" src = "./assets/post-arrow.svg"></button> Post </label>
+        <label id="labelPost"><a href="#/home">
+        <button id="btnArrow"><img id="arrow" src = "./assets/post-arrow.svg"></button></a> Post </label>
         <input type = "file" id = "file" hidden>
         <label for="file" id = "labelImage"> <img id="upload" src = "./assets/logo-image.svg"> Upload Image </label>
         <textarea  placeholder = "Tell us what you have in mind …" id = "addText"></textarea>
@@ -52,7 +53,7 @@ export function Post() {
           <a href="#/post"><img class="logo-Post" src=./assets/Post.svg alt="arrow"></a>
         </div>
         <div>
-          <a href="#/"><img class="logo-Profile" src=./assets/Profile.svg alt="arrow"></a>
+          <a href="#/chat"><img class="logo-Profile" src=./assets/inbox.svg alt="arrow"></a>
         </div>
     </footer>`
     );
@@ -86,7 +87,10 @@ export function postFb() {
         // e.preventDefault();
         const file = document.querySelector("#file").files[0];
         const text = document.querySelector("#addText").value;
-        savePost(file, text);
+        const auth = firebase.auth();
+        const idUser = auth.currentUser.uid;
+        const userName = auth.currentUser.displayName;
+        savePost(file, text, idUser, userName);
         setTimeout(() => {
             window.location.assign("#/home");
         }, 2000);

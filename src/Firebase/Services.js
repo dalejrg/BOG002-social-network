@@ -7,18 +7,21 @@
 
 
 export const singUp = (email, password, errorInput, name) => {
-    console.log(name)
     const db = firebase.firestore();
     const auth = firebase.auth();
     return auth
         .createUserWithEmailAndPassword(email, password)
         .then((cred) => {
             window.location = "#/home";
-            //return cred.uid;
+            const profile = firebase.auth().currentUser;
+            profile.updateProfile({
+                displayName: name
+            })
+
             return db.collection('users').doc(cred.user.uid).set({
                 email: cred.user.email,
                 uid: cred.user.uid,
-                name
+
             })
         })
         .catch((error) => {
@@ -32,6 +35,7 @@ export const singUp = (email, password, errorInput, name) => {
             console.log(error);
         });
 };
+
 
 export const authGoogle = () => {
     const auth = firebase.auth();
@@ -120,31 +124,17 @@ export const recover = (recoveryEmail) => {
 };
 
 
-// Users collection
+// Users data
 
-/*function userName() {
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // User is signed in.
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
-            var providerData = user.providerData;
-            // ...
-        } else {
-            // User is signed out.
-            // ...
-        }
-        console.log(userName())
-    });
-}
+/*export function userName() {
 
-
-db.collection('users').doc(cred.user.uid).set({
-    email: cred.user.email,
-    uid: cred.user.uid,
-    user: username,
-})*/
+    const user = firebase.auth().currentUser;
+    console.log(user)
+    if (user) {
+        user.displayName,
+            user.email,
+            user.uid
+    } else {
+        console.log("null")
+    }
+}*/
