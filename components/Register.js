@@ -45,7 +45,7 @@ export function Register() {
                 <button><img id="logoGoogle" src=./assets/logo-google.svg></button>
               </div>
               <span>Already have an Account?
-                  <a href="#/login">Sign Up</a>
+                  <a href="#/login">Sign In</a>
               </span>
             </div>`;
 
@@ -63,7 +63,9 @@ export function addUser() {
         const email = document.querySelector("#email").value;
         const password = document.querySelector("#password").value;
         const errorInput = document.querySelector("#error");
-        singUp(email, password, errorInput);
+        const username = document.querySelector('#name').value;
+
+        singUp(email, password, errorInput, username);
     });
 
     btnGoogle.addEventListener("click", (e) => {

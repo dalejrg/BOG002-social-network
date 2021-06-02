@@ -3,25 +3,39 @@
  * @param {string} email
  * @param {string} password
  */
-export const singUp = (email, password, errorInput) => {
+
+
+
+export const singUp = (email, password, errorInput, name) => {
+    const db = firebase.firestore();
     const auth = firebase.auth();
     return auth
         .createUserWithEmailAndPassword(email, password)
-        .then((user) => {
+        .then((cred) => {
             window.location = "#/home";
-            return user.email;
+            const profile = firebase.auth().currentUser;
+            profile.updateProfile({
+                displayName: name
+            })
+
+            return db.collection('users').doc(cred.user.uid).set({
+                email: cred.user.email,
+                uid: cred.user.uid,
+
+            })
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            if (errorCode == 'auth/weak-password') {
-                errorInput.textContent = 'The password is too weak'
+            if (errorCode == "auth/weak-password") {
+                errorInput.textContent = "The password is too weak";
             } else {
-                errorInput.textContent = errorMessage
+                errorInput.textContent = errorMessage;
             }
             console.log(error);
         });
 };
+
 
 export const authGoogle = () => {
     const auth = firebase.auth();
@@ -30,7 +44,7 @@ export const authGoogle = () => {
         .signInWithPopup(google_provider)
         .then((result) => {
             window.location = "#/home";
-            return result
+            return result;
         })
         .catch((error) => {
             // Handle Errors here.
@@ -64,28 +78,22 @@ export const login = (email, password, errorInput) => {
     return auth
         .signInWithEmailAndPassword(email, password)
         .then((user) => {
-
             window.location = "#/home";
             return user.email;
-
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            if (errorCode == 'auth/user-not-found') {
-                errorInput.textContent = 'The given email not corresponding'
-            } else if (errorCode == 'auth/wrong-password') {
-                errorInput.textContent = 'The password is invalid'
+            if (errorCode == "auth/user-not-found") {
+                errorInput.textContent = "The given email not corresponding";
+            } else if (errorCode == "auth/wrong-password") {
+                errorInput.textContent = "The password is invalid";
             } else {
-                errorInput.textContent = errorMessage
+                errorInput.textContent = errorMessage;
             }
             console.log(error);
-
         });
 };
-
-
-
 
 // sign out button
 export const signOut = () => {
@@ -93,7 +101,6 @@ export const signOut = () => {
     auth
         .signOut()
         .then(() => {
-            console.log("sign out");
             window.location = "#/";
             // Sign-out successful.
         })
@@ -109,9 +116,25 @@ export const recover = (recoveryEmail) => {
     auth
         .sendPasswordResetEmail(recoveryEmail)
         .then(() => {
-            alert ("We've sent a message to your email.");
+            alert("We've sent a message to your email.");
         })
-        .catch ((error) => {
-            alert ("Enter a valid email address.")
+        .catch((error) => {
+            alert("Enter a valid email address.");
         });
 };
+
+
+// Users data
+
+/*export function userName() {
+
+    const user = firebase.auth().currentUser;
+    console.log(user)
+    if (user) {
+        user.displayName,
+            user.email,
+            user.uid
+    } else {
+        console.log("null")
+    }
+}*/
