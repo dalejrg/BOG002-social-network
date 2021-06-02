@@ -43,22 +43,6 @@ export function menuPrincipal(navegator) {
     navegator.classList.toggle("is_active");
 }
 
-<<<<<<< HEAD
-export function renderPost(doc) {
-  const containerPost = document.querySelector("#render");
-  const previewHTML = containerPost.innerHTML;
-
-  containerPost.innerHTML = `
-  <div class="newPost">
-      <div class="user"></div>
-      <div><img class="imgPost" src= ${doc.image}></div>
-      <div class="text"><p class"textPost">${doc.description}</p></div>
-  </div>
-  ${previewHTML}
-  `;
-  //return containerPost
-}
-=======
 
 
 const auth = firebase.auth();
@@ -205,4 +189,3 @@ export function renderPost(doc) {
         } else { console.error('tu no publicaste este post') }
     })
 }
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9

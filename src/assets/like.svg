@@ -1,4 +1,0 @@
-<svg id="icons_like" data-name="icons/like" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
-  <rect id="bg" width="22" height="22" fill="none"/>
-  <path id="heart" d="M17,4.289a4.406,4.406,0,0,0-6.232,0l-.849.849-.849-.849a4.407,4.407,0,0,0-6.232,6.232l.849.849L9.921,17.6l6.232-6.232L17,10.522a4.406,4.406,0,0,0,0-6.232Z" transform="translate(0.986 1.213)" fill="none" stroke="#757575" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-</svg>

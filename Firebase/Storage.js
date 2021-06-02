@@ -10,13 +10,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 const db = firebase.firestore();
-<<<<<<< HEAD
-export function createPost(file, description) {
-  uploadImage(file).then((url) => {
-    db.collection("usersPost").doc().set({
-      image: url,
-      description,
-=======
 export function savePost(file, description, idUser, name) {
     uploadImage(file).then((url) => {
         db.collection('usersPost').doc().set({
@@ -58,18 +51,9 @@ export function deleteObjPost(idPost) {
         console.log('Document successfully deleted!');
     }).catch((error) => {
         console.error('Error removing document: ', error);
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
     });
 }
 
-<<<<<<< HEAD
-function uploadImage(file) {
-  const name = file.name || "";
-  const ref = firebase.storage().ref("/userProfileImgs/" + name);
-  const uploadTask = ref.put(file);
-  return uploadTask
-    .then((snapshot) => snapshot.ref.getDownloadURL())
-=======
 export function updateObjPost(idPost, newText) {
     const updatePost = db.collection('usersPost').doc(idPost);
     return updatePost.update({
@@ -92,7 +76,6 @@ export function updateObjPost(idPost, newText) {
     .then(() => {
         console.log('Mensaje enviado')
     })
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
     .catch((error) => {
         console.log('Error de mensaje', error);
     });

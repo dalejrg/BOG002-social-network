@@ -38,19 +38,11 @@ body {
     ;
 }
 
-<<<<<<< HEAD
- #container {
-    display: flex;
-    position: relative;
-    justify-content: space-around;
-    height: 92vh;
-=======
 #container {
     display: flex;
     position: relative;
     justify-content: space-around;
     height: 95vh;
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
     flex-direction: column;
     padding: 30px;
     overflow-y: scroll;
@@ -302,11 +294,7 @@ label#labelImage {
     /*border: none;
     border-radius: 50px;
     background-color: #B1B1B1;
-<<<<<<< HEAD
-    /*;*/
-=======
     ;*/
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
     color: white;
     height: 15%;
     width: 100%;
@@ -557,11 +545,6 @@ footer {
 
 .menuppal.is_active {
     transform: translate(20%, 80px)
-<<<<<<< HEAD
-}
-
-.menuppal ul {
-=======
 }
 
 .menuppal ul {
@@ -772,78 +755,10 @@ footer {
 }
 
 #optionPost ul {
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
     margin: 0;
     padding: 0;
 }
 
-<<<<<<< HEAD
-.menuppal ul li {
-    list-style: none;
-    text-align: center;
-    font-size: 1.5rem;
-    line-height: 3em;
-    height: 3em;
-    color: rgb(1, 11, 20);
-    text-transform: none;
-    font-weight: bold;
-}
-
-.menuppal ul li a {
-    text-decoration: none;
-    color: white;
-}
-
-.menuppal ul li a:hover {
-    text-decoration: none;
-    color: rgb(132, 228, 22);
-}
-
-#upload.imgUpload {
-    width: 40%;
-}
-
-
-/* post card */
-
-#render {
-    display: flex;
-    flex-direction: column;
-    padding-top: 70px;
-    top: 0;
-    height: 88vh;
-}
-
-.newPost {
-    background: #F9F9F9;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
-    width: 310;
-    margin: 10px;
-    position: relative;
-    align-items: center;
-    text-align: center;
-}
-
-.imgPost {
-    width: 100%;
-    padding: 5px;
-}
-
-.text {
-    padding: 8px;
-}
-
-.textPost {
-    font-family: 'Lato', sans-serif;
-    font-weight: 600;
-    padding: 15px;
-}
-
-#home:nth-child(3) {
-    display: none;
-    background-color: red;
-=======
 #optionPost ul li {
     list-style: none;
     padding: 5px;
@@ -1028,5 +943,4 @@ span.userMessage {
     font-family: 'Lato', sans-serif;
     text-align: center;
     font-size: 20px;
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
 }

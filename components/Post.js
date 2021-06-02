@@ -61,46 +61,12 @@ export function Post() {
 }
 
 export function menuHam() {
-<<<<<<< HEAD
-  const nav = document.querySelector("#hamburger_menu button");
-  const menuppal = document.querySelector(".menuppal");
-  nav.addEventListener("click", (e) => {
-    homeListener(nav);
-    menuPrincipal(menuppal);
-  });
-}
-
-export function postFb() {
-  //Preview Image
-  const inputFile = document.querySelector("#file");
-  const image = document.querySelector("#upload");
-  image.setAttribute("class", "imgUpload");
-  inputFile.onchange = (e) => {
-    e.preventDefault();
-    const [file] = inputFile.files;
-    if (file) {
-      image.src = URL.createObjectURL(file);
-    }
-  };
-  //Add Post
-  const addPost = document.querySelector("#addPost");
-  addPost.addEventListener("click", (e) => {
-    // e.preventDefault();
-    const file = document.querySelector("#file").files[0];
-    const text = document.querySelector("#addText").value;
-    createPost(file, text);
-    setTimeout(() => {
-      window.location.assign("#/home");
-    }, 2000);
-  });
-=======
     const nav = document.querySelector("#hamburger_menu button");
     const menuppal = document.querySelector(".menuppal");
     nav.addEventListener("click", (e) => {
         homeListener(nav);
         menuPrincipal(menuppal);
     });
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
 }
 
 export function postFb() {

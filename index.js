@@ -1,13 +1,8 @@
 // eslint-disable-next-line import/no-cycle
 // import { App } from "./app/App.js";
 import { Router } from "./components/Router.js";
-<<<<<<< HEAD
-import { renderPost } from "./components/Utils.js";
-import { createPost } from "./Firebase/Storage.js";
-=======
 /*import { renderPost } from "./components/Utils.js";
 import { createPost } from "./Firebase/Storage.js";*/
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
 
 export function App() {
     Router();
@@ -38,11 +33,7 @@ window.addEventListener("hashchange", App);
 //     );
 //   }
 
-<<<<<<< HEAD
-window.addEventListener("load", () => {
-=======
 /*window.addEventListener("load", () => {
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
   const db = firebase.firestore();
   db.collection("usersPost").onSnapshot((query) => {
     const template = document.querySelector("#template");
@@ -59,8 +50,4 @@ window.addEventListener("load", () => {
     template.dataset.timeline = JSON.stringify(timeline);
   });
   console.log("carga pagina");
-<<<<<<< HEAD
-});
-=======
 });*/
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9

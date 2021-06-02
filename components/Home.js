@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import { reset, homeListener, menuPrincipal, renderPost } from "./Utils.js";
-// import { signOut } from "../Firebase/Services.js";
-=======
 import { reset, homeListener, menuPrincipal } from "./Utils.js";
 import { signOut } from "../Firebase/Services.js";
 
@@ -25,46 +21,14 @@ export const renderPosts = async() => {
         }, 3000);
     }
 };*/
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
-
-const renderEachPost = (templateElement) => {
-  const timeline = templateElement.dataset.timeline;
-  const timelineData = JSON.parse(timeline);
-  timelineData.forEach((post) => {
-    renderPost(post);
-  });
-};
-
-export const renderPosts = async () => {
-  const templateApp = document.querySelector("#template");
-  const timeline = templateApp.dataset.timeline;
-
-  if (timeline) {
-    renderEachPost(templateApp);
-  } else {
-    setTimeout(() => {
-      renderEachPost(templateApp);
-    }, 3000);
-  }
-};
 
 export function Home() {
-<<<<<<< HEAD
-  reset();
-
-  const template = document.createElement("div");
-  template.setAttribute("id", "home");
-  template.insertAdjacentHTML(
-    "afterbegin",
-    `<header class="headerHome">
-=======
     reset();
     const template = document.createElement("div");
     template.setAttribute("id", "home");
     template.insertAdjacentHTML(
         "afterbegin",
         `<header class="headerHome">
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
     <div>
       <img class="logoHome" src="./assets/LogoHome.svg" alt="Gleam logo">
     </div>
@@ -119,27 +83,6 @@ export function menu() {
         menuPrincipal(menuppal);
     });
 }
-<<<<<<< HEAD
-
-/*db.collection("usersPost").onSnapshot()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                //console.log(doc.id, " => ", doc.data());
-                renderPost(doc.data());
-            });
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
-}
-
-
-/*<div class="btns-container-mobile">
-          <button id="signOut" class="button_general">LogOut</button>
-        </div>*/
-=======
->>>>>>> 47e597556f6668ffbf80cfda1911cb70fa43dac9
 
 export function userOut() {
     const logOut = document.querySelector("#signOut");
