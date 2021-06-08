@@ -1,11 +1,11 @@
-import { reset } from "./Utils.js";
+import { reset, homeListener, menuPrincipal } from './Utils.js';
 
-export function editProfile () {
+export function editProfile() {
   reset();
-  const template = document.createElement("div");
-  template.setAttribute("id", "home");
+  const template = document.createElement('div');
+  template.setAttribute('id', 'home');
   template.insertAdjacentHTML(
-    "afterbegin",
+    'afterbegin',
     `<header class="headerHome">
     <div>
       <img class="logoHome" src="./assets/LogoHome.svg" alt="Gleam logo">
@@ -68,16 +68,16 @@ export function editProfile () {
           <a href="#/"><img class="logo-Profile" src=./assets/Profile.svg alt="arrow"></a>
         </div>
     </footer>
-    `
+    `,
   );
   return template;
 }
 
 export function menuHam() {
-    const nav = document.querySelector("#hamburger_menu button");
-    const menuppal = document.querySelector(".menuppal");
-    nav.addEventListener("click", (e) => {
-      homeListener(nav);
-      menuPrincipal(menuppal);
-    });
+  const nav = document.querySelector('#hamburger_menu button');
+  const menuppal = document.querySelector('.menuppal');
+  nav.addEventListener('click', () => {
+    homeListener(nav);
+    menuPrincipal(menuppal);
+  });
 }

@@ -35,7 +35,6 @@ body {
     background-position: center;
     height: 100%;
     animation: latidos 1.5s infinite;
-    ;
 }
 
 #container {
@@ -136,6 +135,8 @@ body {
 .form_styles {
     display: flex;
     flex-flow: column;
+    margin-bottom: 25px;
+    position: relative;
 }
 
 .form_styles label {
@@ -149,11 +150,6 @@ body {
     outline: none;
     padding: 0;
     height: 20px;
-}
-
-.form_styles {
-    margin-bottom: 25px;
-    position: relative;
 }
 
 .input__indicator {
@@ -305,17 +301,13 @@ label#labelImage {
 
 label#labelEditImage {
     background-color: white;
-    /*align-items: center;*/
     display: flex;
-    /*flex-flow: column;*/
     border: 2px solid #ff0180;
     border-radius: 100%;
-    padding-top: 50%;
     color: #8E8E8E;
     font-family: 'Lato', sans-serif;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 25px;
     padding: 20% 18% 25% 50%;
     margin: 1% 50% 2% 18%;
 }
@@ -347,6 +339,7 @@ font-weight: 600;
 .logoHome {
     height: 160px;
     width: 130px;
+    text-align: left;
 }
 
 .logoMenu {
@@ -369,10 +362,6 @@ font-weight: 600;
 
 footer {
     background-color: #630092;
-}
-
-.logoHome {
-    text-align: left;
 }
 
 .navBar {
@@ -430,21 +419,6 @@ footer {
 }
 
 
-/* boton abierto */
-
-#hamburger_menu button.open .top_line {
-    animation-name: top_line_animation;
-}
-
-#hamburger_menu button.open .middle_line {
-    animation-name: middle_line_animation;
-}
-
-#hamburger_menu button.open .bottom_line {
-    animation-name: bottom_line_animation;
-}
-
-
 /* boton cerrado */
 
 #hamburger_menu button .top_line {
@@ -457,6 +431,21 @@ footer {
 
 #hamburger_menu button .bottom_line {
     animation-name: bottom_line_animation_close;
+}
+
+
+/* boton abierto */
+
+#hamburger_menu button.open .top_line {
+    animation-name: top_line_animation;
+}
+
+#hamburger_menu button.open .middle_line {
+    animation-name: middle_line_animation;
+}
+
+#hamburger_menu button.open .bottom_line {
+    animation-name: bottom_line_animation;
 }
 
 

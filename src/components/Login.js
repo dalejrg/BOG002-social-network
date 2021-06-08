@@ -1,11 +1,11 @@
 // eslint-disable-next-line quotes
 import { reset, showPassword, hidePassword } from "./Utils.js";
-import { authGoogle, login, authFacebook } from "../Firebase/Services.js";
+import { authGoogle, login, authFacebook } from '../Firebase/Services.js';
 
 export function Login() {
-    reset();
-    const login = document.createElement("div");
-    login.innerHTML = ` 
+  reset();
+  const loginUser = document.createElement('div');
+  loginUser.innerHTML = ` 
   <div class="container">
     <a href="#/"><img class="back" src=./assets/back.svg alt="arrow"></a>
     <h1 class="register-tittle"> Login </h1>
@@ -43,38 +43,38 @@ export function Login() {
               </span>
             </div>`;
 
-    return login;
+  return loginUser;
 }
 
 export function logInUser() {
-    const btnSignIn = document.querySelector("#signIn");
-    btnSignIn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const email = document.querySelector("#email").value;
-        const password = document.querySelector("#password").value;
-        const errorInput = document.querySelector("#error");
-        login(email, password, errorInput);
-    });
-    // logo google
-    const btnGoogle = document.querySelector("#logoGoogle");
-    btnGoogle.addEventListener("click", (e) => {
-        e.preventDefault();
-        authGoogle();
-    });
-    const btnFb = document.querySelector("#logoFb");
-    btnFb.addEventListener("click", (e) => {
-        e.preventDefault();
-        authFacebook();
-    });
-    // toggle
-    const passwordField = document.querySelector('#password');
-    const show = document.querySelector('.show');
-    const hide = document.querySelector('.hide');
+  const btnSignIn = document.querySelector('#signIn');
+  btnSignIn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
+    const errorInput = document.querySelector('#error');
+    login(email, password, errorInput);
+  });
+  // logo google
+  const btnGoogle = document.querySelector('#logoGoogle');
+  btnGoogle.addEventListener('click', (e) => {
+    e.preventDefault();
+    authGoogle();
+  });
+  const btnFb = document.querySelector('#logoFb');
+  btnFb.addEventListener('click', (e) => {
+    e.preventDefault();
+    authFacebook();
+  });
+  // toggle
+  const passwordField = document.querySelector('#password');
+  const show = document.querySelector('.show');
+  const hide = document.querySelector('.hide');
 
-    show.addEventListener("click", () => {
-        showPassword(passwordField, show, hide);
-    });
-    hide.addEventListener("click", () => {
-        hidePassword(passwordField, hide, show);
-    });
+  show.addEventListener('click', () => {
+    showPassword(passwordField, show, hide);
+  });
+  hide.addEventListener('click', () => {
+    hidePassword(passwordField, hide, show);
+  });
 }
