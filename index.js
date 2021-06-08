@@ -1,15 +1,15 @@
 // eslint-disable-next-line import/no-cycle
 // import { App } from "./app/App.js";
-import { Router } from "./components/Router.js";
-/*import { renderPost } from "./components/Utils.js";
-import { createPost } from "./Firebase/Storage.js";*/
+import { Router } from './components/Router.js';
+/* import { renderPost } from "./components/Utils.js";
+import { createPost } from "./Firebase/Storage.js"; */
 
 export function App() {
-    Router();
+  Router();
 }
 
-document.addEventListener("DOMContentLoaded", App);
-window.addEventListener("hashchange", App);
+document.addEventListener('DOMContentLoaded', App);
+window.addEventListener('hashchange', App);
 
 // export function getData() {
 //     const db = firebase.firestore();
@@ -33,7 +33,7 @@ window.addEventListener("hashchange", App);
 //     );
 //   }
 
-/*window.addEventListener("load", () => {
+/* window.addEventListener("load", () => {
   const db = firebase.firestore();
   db.collection("usersPost").onSnapshot((query) => {
     const template = document.querySelector("#template");
@@ -50,4 +50,4 @@ window.addEventListener("hashchange", App);
     template.dataset.timeline = JSON.stringify(timeline);
   });
   console.log("carga pagina");
-});*/
+}); */

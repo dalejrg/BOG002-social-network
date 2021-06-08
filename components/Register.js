@@ -1,10 +1,10 @@
-import { reset, showPassword, hidePassword } from "./Utils.js";
-import { singUp, authGoogle, authFacebook } from "../Firebase/Services.js";
+import { reset, showPassword, hidePassword } from './Utils.js';
+import { singUp, authGoogle, authFacebook } from '../Firebase/Services.js';
 
 export function Register() {
-    reset();
-    const register = document.createElement("div");
-    register.innerHTML = ` 
+  reset();
+  const register = document.createElement('div');
+  register.innerHTML = ` 
         <div class="container">
           <a href="#/"><img class="back" src=./assets/back.svg alt="arrow"></a>
           <h1 class="register-tittle"> Enjoy Gleam </h1>
@@ -49,43 +49,43 @@ export function Register() {
               </span>
             </div>`;
 
-    return register;
+  return register;
 }
-const grid = document.querySelector(".grid");
-grid.classList.remove("padding");
+const grid = document.querySelector('.grid');
+grid.classList.remove('padding');
 
 export function addUser() {
-    const btnContinue = document.querySelector("#register");
-    const btnFb = document.querySelector("#logoFb");
-    const btnGoogle = document.querySelector("#logoGoogle");
-    btnContinue.addEventListener("click", (e) => {
-        e.preventDefault();
-        const email = document.querySelector("#email").value;
-        const password = document.querySelector("#password").value;
-        const errorInput = document.querySelector("#error");
-        const username = document.querySelector('#name').value;
+  const btnContinue = document.querySelector('#register');
+  const btnFb = document.querySelector('#logoFb');
+  const btnGoogle = document.querySelector('#logoGoogle');
+  btnContinue.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
+    const errorInput = document.querySelector('#error');
+    const username = document.querySelector('#name').value;
 
-        singUp(email, password, errorInput, username);
-    });
+    singUp(email, password, errorInput, username);
+  });
 
-    btnGoogle.addEventListener("click", (e) => {
-        e.preventDefault();
-        authGoogle();
-    });
+  btnGoogle.addEventListener('click', (e) => {
+    e.preventDefault();
+    authGoogle();
+  });
 
-    btnFb.addEventListener("click", (e) => {
-        e.preventDefault();
-        authFacebook();
-    });
-    // toggle
-    const passwordField = document.querySelector("#password");
-    const show = document.querySelector(".show");
-    const hide = document.querySelector(".hide");
+  btnFb.addEventListener('click', (e) => {
+    e.preventDefault();
+    authFacebook();
+  });
+  // toggle
+  const passwordField = document.querySelector('#password');
+  const show = document.querySelector('.show');
+  const hide = document.querySelector('.hide');
 
-    show.addEventListener("click", () => {
-        showPassword(passwordField, show, hide);
-    });
-    hide.addEventListener("click", () => {
-        hidePassword(passwordField, hide, show);
-    });
+  show.addEventListener('click', () => {
+    showPassword(passwordField, show, hide);
+  });
+  hide.addEventListener('click', () => {
+    hidePassword(passwordField, hide, show);
+  });
 }
