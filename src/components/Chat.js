@@ -1,17 +1,12 @@
-//import { sendMessages } from "../Firebase/Storage.js";
-import { reset } from "./Utils.js"
+import { reset, homeListener, menuPrincipal } from './Utils.js';
 
 export function Chat() {
-    reset();
-    const templateChat = document.createElement("div");
-    const userMessage = document.querySelector('#userMessage');
-    const destinataryMessage = document.querySelector('#destinataryMessage');
-    //const preview = userMessage.innerHTML;
-    //const preview2 = destinataryMessage.innerHTML;
-    templateChat.setAttribute("id", "home");
-    templateChat.insertAdjacentHTML(
-        "afterbegin",
-        `<header class="headerHome">
+  reset();
+  const templateChat = document.createElement('div');
+  templateChat.setAttribute('id', 'home');
+  templateChat.insertAdjacentHTML(
+    'afterbegin',
+    `<header class="headerHome">
       <div>
         <img class="logoHome" src="./assets/LogoHome.svg" alt="Gleam logo">
       </div>
@@ -66,16 +61,16 @@ export function Chat() {
         <div>
           <a href="#/chat"><img class="logo-Profile" id="chatLogo" src=./assets/inbox.svg alt="arrow"></a>
         </div>
-    </footer>`
-    );
-    return templateChat;
+    </footer>`,
+  );
+  return templateChat;
 }
 
 export function menuHam() {
-    const nav = document.querySelector("#hamburger_menu button");
-    const menuppal = document.querySelector(".menuppal");
-    nav.addEventListener("click", (e) => {
-        homeListener(nav);
-        menuPrincipal(menuppal);
-    });
+  const nav = document.querySelector('#hamburger_menu button');
+  const menuppal = document.querySelector('.menuppal');
+  nav.addEventListener('click', () => {
+    homeListener(nav);
+    menuPrincipal(menuppal);
+  });
 }
